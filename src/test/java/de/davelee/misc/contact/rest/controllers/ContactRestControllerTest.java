@@ -37,7 +37,7 @@ public class ContactRestControllerTest {
     /**
      * This method tests the following use cases:
      * 1. Sends a test email.
-     * 2. Sends enough test emails so that the maximum number of emails permitted in the dev-test profile are exceeded.
+     * 2. Sends enough test emails so that the maximum number of emails permitted in the dev profile are exceeded.
      */
     @Test
     public void testHelloWorld() {
