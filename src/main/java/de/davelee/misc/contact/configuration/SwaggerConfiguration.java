@@ -16,7 +16,7 @@ import static springfox.documentation.builders.PathSelectors.regex;
  * This class configures the swagger documentation.
  */
 @Configuration
-@Profile("dev-test")
+@Profile("dev")
 @EnableSwagger2
 public class SwaggerConfiguration {
 
