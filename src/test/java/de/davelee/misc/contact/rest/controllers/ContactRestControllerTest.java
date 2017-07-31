@@ -1,72 +1,96 @@
 package de.davelee.misc.contact.rest.controllers;
 
-import com.jayway.restassured.RestAssured;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import de.davelee.misc.contact.data.ContactRequest;
-import org.apache.http.HttpStatus;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Value;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
+import org.subethamail.wiser.Wiser;
 
-import static com.jayway.restassured.RestAssured.given;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
  * This class tests the ContactRestController and indirectly the SendEmailService.
+ * It uses an built-in SMTP Server von wiser.
  * @author Dave Lee
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(webEnvironment= SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment= SpringBootTest.WebEnvironment.MOCK)
+@ActiveProfiles("test")
 public class ContactRestControllerTest {
 
-    /**
-     * This is the port where the test server will run - it is randomly chosen by Spring Test.
-     */
-    @Value("${local.server.port}")
-    int port;
+    private Wiser wiser;
+
+    @Autowired
+    private WebApplicationContext wac;
+    private MockMvc mockMvc;
+
+    private static final Logger logger = LoggerFactory.getLogger(ContactRestControllerTest.class);
 
     /**
-     * Initalise the port for the Spring Boot Test application.
+     * Set up the built-in SMTP Server on port 1025 and configure the mock application context.
      */
     @Before
     public void setUp() {
-        RestAssured.port = port;
+        wiser = new Wiser();
+        wiser.setPort(1025);
+        wiser.start();
+        mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
     }
 
     /**
-     * This method tests the following use cases:
-     * 1. Sends a test email.
-     * 2. Sends enough test emails so that the maximum number of emails permitted in the dev profile are exceeded.
+     * Before ending the test, stop the built-in SMTP Server.
+     * @throws Exception a <code>Exception</code> object which occurs if the SMTP server cannot be stopped.
+     */
+    @After
+    public void tearDown() throws Exception {
+        wiser.stop();
+    }
+
+    /**
+     * This method tests the use case:
+     * 1. Send a test email.
      */
     @Test
-    public void testHelloWorld() {
+    public void testSendEmail() {
         ContactRequest contactRequest = new ContactRequest();
         contactRequest.setEmailAddress("test@davelee.de");
         contactRequest.setMessage("Test Message");
         contactRequest.setName("JUnit Test");
         contactRequest.setWebsite("www.localhost.org");
-        given()
-                .contentType("application/json")
-                .body(contactRequest)
-                .when()
-                .post("/contact/sendEmail")
-                .then()
-                .statusCode(HttpStatus.SC_OK);
-        given()
-                .contentType("application/json")
-                .body(contactRequest)
-                .when()
-                .post("/contact/sendEmail")
-                .then()
-                .statusCode(HttpStatus.SC_OK);
-        given()
-                .contentType("application/json")
-                .body(contactRequest)
-                .when()
-                .post("/contact/sendEmail")
-                .then()
-                .statusCode(HttpStatus.SC_OK);
+        try {
+            mockMvc.perform(post("/contact/sendEmail").contentType(MediaType.APPLICATION_JSON).content(asJsonString(contactRequest))).andExpect(status().isOk());
+        } catch (Exception exception) {
+            logger.error("An exception occurred whilst attempting to send email", exception);
+        }
+    }
+
+    /**
+     * This method converts the supplied object into a JSON string. Any errors will be logged.
+     * @param object a <code>Object</code> to be converted into JSON
+     * @return a <code>String</code> with the JSON representation of this object or null if an error occurred.
+     */
+    public static String asJsonString(final Object object) {
+        try {
+            final ObjectMapper mapper = new ObjectMapper();
+            final String jsonContent = mapper.writeValueAsString(object);
+            return jsonContent;
+        } catch (Exception exception) {
+            logger.error("An exception occurred whilst translating object into json", exception);
+            return null;
+        }
     }
 
 }
