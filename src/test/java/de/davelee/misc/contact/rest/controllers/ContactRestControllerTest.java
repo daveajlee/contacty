@@ -62,6 +62,8 @@ public class ContactRestControllerTest {
     /**
      * This method tests the use case:
      * 1. Send a test email.
+     * 2. Send a second test email - this should also work.
+     * 3. Send a third test email - this should not work as limits exceeded.
      */
     @Test
     public void testSendEmail() {
@@ -71,6 +73,8 @@ public class ContactRestControllerTest {
         contactRequest.setName("JUnit Test");
         contactRequest.setWebsite("www.localhost.org");
         try {
+            mockMvc.perform(post("/contact/sendEmail").contentType(MediaType.APPLICATION_JSON).content(asJsonString(contactRequest))).andExpect(status().isOk());
+            mockMvc.perform(post("/contact/sendEmail").contentType(MediaType.APPLICATION_JSON).content(asJsonString(contactRequest))).andExpect(status().isOk());
             mockMvc.perform(post("/contact/sendEmail").contentType(MediaType.APPLICATION_JSON).content(asJsonString(contactRequest))).andExpect(status().isOk());
         } catch (Exception exception) {
             logger.error("An exception occurred whilst attempting to send email", exception);
