@@ -40,6 +40,12 @@
 			<version>2.4.0</version>
 		</dependency>
 
+		<!-- Optional UI through Thymeleaf -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+
 		<!-- Test Frameworks -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>

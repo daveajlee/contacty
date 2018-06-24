@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- This is the HTML which displays the contact form to the user. You may modify
+ the CSS and Design as much as you like but do not change the thymeleaf parts of this page -->
+<head>
+    <title>Contact Microservice</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet"/>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+    <div class="container-fluid bg-2">
+        
+        <!-- Start Form -->
+        <form action="#" th:action="@{/}" th:object="${contactRequest}" method="post" id="contactForm">
+            <!-- Name -->
+            <div class="form-group" id="frmGrpName">
+                <label for="name" class="control-label">Name (required)</label>
+                <input type="text" th:field="*{name}" id="name" class="form-control" placeholder="Your Name"/>
+                <p th:if="${#fields.hasErrors('name')}">Please complete the Name field. Thank you!</p>
+            </div>
+            <!-- Email -->
+            <div class="form-group" id="frmGrpEmail">
+                <label for="email" class="control-label">E-Mail (required)</label>
+                <input type="text" th:field="*{emailAddress}" id="email" class="form-control" placeholder="Your E-Mail"/>
+                <p th:if="${#fields.hasErrors('emailAddress')}">Please complete the Email Address field. Thank you!</p>
+            </div>
+            <!-- Website -->
+            <div class="form-group" id="frmGrpWebsite">
+                <label for="website" class="control-label">Website</label>
+                <input type="text" th:field="*{website}" id="website" class="form-control" placeholder="Your Website"/>
+            </div>
+            <!-- Message -->
+            <div class="form-group" id="frmGrpMessage">
+                <label for="message">Message (required)</label>
+                <textarea class="form-control" th:field="*{message}" rows="5" id="message" placeholder="Your Message"></textarea>
+                <p th:if="${#fields.hasErrors('message')}">Please complete the Message field. Thank you!</p>
+            </div>
+            <!-- Submit Button -->
+            <div class="form-group text-right">
+                <button type="submit" id="submitButton" class="btn btn-primary btn-lg">Submit</button>
+            </div>
+        </form>
+        <!-- End Form -->
+    </div>
+
+</body>
+</html>

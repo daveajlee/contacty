@@ -1,5 +1,8 @@
 package de.davelee.misc.contact.data;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 /**
  * This class represents a request to make contact through the microservice. A request contains a name, email address,
  * website and message. All parameters are optional. The person making the contact request is referred to as the sender.
@@ -8,20 +11,26 @@ package de.davelee.misc.contact.data;
 public class ContactRequest {
 
     /**
-     * The name of the sender.
+     * The name of the sender (must not be null or empty)
      */
+    @NotNull
+    @Size(min=1)
     private String name;
     /**
-     * The email address of the sender.
+     * The email address of the sender (must not be null or empty).
      */
+    @NotNull
+    @Size(min=1)
     private String emailAddress;
     /**
      * The website of the sender.
      */
     private String website;
     /**
-     * The message which the sender wrote for the recipient.
+     * The message which the sender wrote for the recipient (must not be null or empty).
      */
+    @NotNull
+    @Size(min=1)
     private String message;
 
     /**
@@ -86,6 +95,16 @@ public class ContactRequest {
      */
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    /**
+     * Return a toString representation of this ContactRequest object containing name, email address, website
+     * and message.
+     * @return a <code>String</code> containing the String representation of this ContactRequest object.
+     */
+    public String toString() {
+        return "ContactRequest(Name: " + this.name + ", EmailAddress: " + this.emailAddress + ", Website: " +
+                this.website + ", Message: " + this.message + ")";
     }
 
 }
