@@ -7,6 +7,24 @@ Microservices per definition implement a single business feature. This microserv
 2. Create an executable jar using mvn clean install.
 3. Run the jar (for example in production mode): java -Dspring.profiles.active=production -jar contact-microservice.jar
 
+**How to integrate the contact microservice with your website**
+* Option 1: The contact microservice comes with a small simple HTML form which can be directly integrated into your website. This form is available by calling the contact microservice with the URL https://your-domain/contact-microservice/
+* Option 2: You can integrate the contact microservice using JavaScript. A simple JavaScript for the contact microservice would look like this
+
+var contactRequest = {};
+contactRequest.name = document.forms[0][0].value;
+contactRequest.emailAddress = document.forms[0][1].value;
+contactRequest.website = document.forms[0][2].value;
+contactRequest.message = document.forms[0][3].value;
+$.ajax({
+     url: "https://your-domain/contact-microservice/sendEmail",
+     method: "POST",
+     contentType: "application/json",
+     data: JSON.stringify(contactRequest)
+});
+
+* You can also test the contact microservice using the Swagger Interface located at https://your-domain/contact-microservice/swagger-ui.html
+
 **Available Profiles**
 * dev - This profile sets the Log level to INFO and only allows 2 e-mails (per default) to be sent before the service has to be restarted. This works well for development and testing.
 * production - This profile sets the Log Level to WARN, uses SSL per default and allow 100 e-mails per day to be sent.
