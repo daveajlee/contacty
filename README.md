@@ -1,4 +1,7 @@
 # contact-microservice
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/c6966f0291de4fada794ac4d7b32dedf)](https://app.codacy.com/manual/dave_33/contact-microservice?utm_source=github.com&utm_medium=referral&utm_content=daveajlee/contact-microservice&utm_campaign=Badge_Grade_Dashboard)
+
 Microservices per definition implement a single business feature. This microservice enables emails to be sent using Java Mail through a REST API per JSON. Therefore emails can be sent from any programming language through this REST API and microservice. The service supports SSL.
 
 **How to use**
