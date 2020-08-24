@@ -6,6 +6,7 @@ import de.davelee.misc.contact.data.ContactRequest;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +16,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -72,13 +74,16 @@ public class ContactRestControllerTest {
         contactRequest.setMessage("Test Message");
         contactRequest.setName("JUnit Test");
         contactRequest.setWebsite("www.localhost.org");
+        boolean emailSuccess = false;
         try {
             mockMvc.perform(post("/contact/sendEmail").contentType(MediaType.APPLICATION_JSON).content(asJsonString(contactRequest))).andExpect(status().isOk());
             mockMvc.perform(post("/contact/sendEmail").contentType(MediaType.APPLICATION_JSON).content(asJsonString(contactRequest))).andExpect(status().isOk());
             mockMvc.perform(post("/contact/sendEmail").contentType(MediaType.APPLICATION_JSON).content(asJsonString(contactRequest))).andExpect(status().isOk());
+            emailSuccess = true;
         } catch (Exception exception) {
             logger.error("An exception occurred whilst attempting to send email", exception);
         }
+        assertTrue(emailSuccess);
     }
 
     /**
@@ -95,6 +100,14 @@ public class ContactRestControllerTest {
             logger.error("An exception occurred whilst translating object into json", exception);
             return null;
         }
+    }
+
+    /**
+     * Private helper method to ensure Codacy detects assert method.
+     * @param condition a <code>boolean</code> condition to test.
+     */
+    private void assertTrue ( final boolean condition ) {
+        Assertions.assertTrue(condition);
     }
 
 }
