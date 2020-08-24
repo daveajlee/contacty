@@ -1,5 +1,6 @@
 package de.davelee.misc.contact.rest.controllers;
 
+import com.dumbster.smtp.SimpleSmtpServer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.davelee.misc.contact.data.ContactRequest;
 import org.junit.After;
@@ -16,7 +17,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-import org.subethamail.wiser.Wiser;
+
+import java.io.IOException;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -31,7 +33,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ActiveProfiles("test")
 public class ContactRestControllerTest {
 
-    private Wiser wiser;
+    private SimpleSmtpServer dumbster;
 
     @Autowired
     private WebApplicationContext wac;
@@ -43,10 +45,8 @@ public class ContactRestControllerTest {
      * Set up the built-in SMTP Server on port 1025 and configure the mock application context.
      */
     @Before
-    public void setUp() {
-        wiser = new Wiser();
-        wiser.setPort(1025);
-        wiser.start();
+    public void setUp() throws IOException {
+        dumbster = SimpleSmtpServer.start(1025);
         mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
     }
 
@@ -56,7 +56,7 @@ public class ContactRestControllerTest {
      */
     @After
     public void tearDown() throws Exception {
-        wiser.stop();
+        dumbster.stop();
     }
 
     /**
