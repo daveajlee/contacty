@@ -24,7 +24,6 @@ public class SwaggerConfigurationTest {
     public void testSwagger() {
         SwaggerConfiguration swaggerConfiguration = new SwaggerConfiguration();
         assertNotNull(swaggerConfiguration.api());
-        assertEquals("contact", swaggerConfiguration.api().getGroupName());
     }
 
 }
