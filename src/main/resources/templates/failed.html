@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
 <!-- This is the HTML which displays the failed page to the user. You may modify
  the CSS and Design as much as you like. -->
 <head>
@@ -12,6 +12,9 @@
     <div id="formSubmittedFailed" style="background-color: red; color: white; padding-left:5px;">
         <p>Your message could not be sent because of technical problems - please try again later!</p>
     </div>
+
+    <hr/>
+    <h3>Powered by <a href="https://www.davelee.de/en/contacty"><img th:src="@{/contacty-logo.png}"></a></h3>
 
 </body>
 </html>
