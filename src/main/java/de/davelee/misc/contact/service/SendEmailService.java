@@ -54,7 +54,7 @@ public class SendEmailService {
     /**
      * Enable logging for this class.
      */
-    private static Logger LOGGER = LoggerFactory.getLogger(SendEmailService.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(SendEmailService.class);
 
     /**
      * Send an email using the supplied <code>ContactRequest</code> object which contains name, email address, website

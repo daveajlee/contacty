@@ -10,30 +10,27 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
 
-@Controller
 /**
  * This class is a UI Controller for the Spring Boot Contact Microservice. It defines the endpoints for
  * the HTML pages which are generated using Thymeleaf and also sends the data to the rest controller
  * for further processing.
  * @author Dave Lee
  */
+@Controller
 public class ContactUIController {
 
     @Autowired
     private ContactRestController contactRestController;
 
-    @GetMapping("/")
     /**
-     * Endpoint for showing the form (HTML template: contact.html). A contactRequest object may be supplied
-     * if displaying the form to the user after validation.
-     * @param contactRequest a <code>ContactRequest</code> object which may be supplied after validation.
+     * Endpoint for showing the form (HTML template: contact.html).
      * @return a <code>String</code> with the name of the html template to display.
      */
-    public String showForm(ContactRequest contactRequest) {
+    @GetMapping("/")
+    public String showForm() {
         return "contact";
     }
 
-    @PostMapping("/")
     /**
      * Endpoint for checking if the supplied contact request data from the form is valid. Return the HTML
      * template (contact.html) if the validation was not sucessful, the HTML template (success.html) if the
@@ -43,6 +40,7 @@ public class ContactUIController {
      * @param bindingResult a <code>BindingResult</code> object from Spring with the results of the validation.
      * @return a <code>String</code> with the name of the html template to display.
      */
+    @PostMapping("/")
     public String checkContactRequest(@Valid ContactRequest contactRequest, BindingResult bindingResult) {
 
         //Form had errors i.e. validation was not successful.
@@ -61,20 +59,20 @@ public class ContactUIController {
 
     }
 
-    @GetMapping("/success")
     /**
      * Endpoint for showing the success page (HTML template: success.html).
      * @return a <code>String</code> with the name of the html template to display.
      */
+    @GetMapping("/success")
     public String showSuccess() {
         return "success";
     }
 
-    @GetMapping("/failed")
     /**
      * Endpoint for showing the failed page (HTML template: failed.html).
      * @return a <code>String</code> with the name of the html template to display.
      */
+    @GetMapping("/failed")
     public String showFailed() {
         return "failed";
     }

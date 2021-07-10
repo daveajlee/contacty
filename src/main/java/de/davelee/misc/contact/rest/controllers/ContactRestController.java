@@ -2,10 +2,7 @@ package de.davelee.misc.contact.rest.controllers;
 
 import de.davelee.misc.contact.data.ContactRequest;
 import de.davelee.misc.contact.service.SendEmailService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,14 +23,19 @@ import java.util.HashMap;
  * @author Dave Lee
  */
 @RestController
-@Api(value="/contact", description="Contact operations")
+@Api(value="/contact")
+@SwaggerDefinition(
+        tags = {
+                @Tag(name = "Contacty - Contact Microservice", description = "Contact operations")
+        }
+)
 @RequestMapping(value="/contact")
 public class ContactRestController {
 
     /**
      * The Access Log is a simple log which stores how many emails (value) have been sent per day (key).
      */
-    private static HashMap<LocalDate, Integer> ACCESS_LOG = new HashMap<>();
+    private final static HashMap<LocalDate, Integer> ACCESS_LOG = new HashMap<>();
 
     /**
      * The SendEmailService is a small Java service to actually send the email to the definied recipient.
@@ -50,7 +52,7 @@ public class ContactRestController {
     /**
      * Enable logging for this class.
      */
-    private static Logger LOGGER = LoggerFactory.getLogger(ContactRestController.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(ContactRestController.class);
 
     /**
      * This a POST endpoint /sendEmail. It takes a ContactRequest object as JSON in the request body.
@@ -87,7 +89,7 @@ public class ContactRestController {
                         maxAllowedEmails + ")" + " were already processed for today!");
             }
         }
-        return ResponseEntity.ok(null);
+        return ResponseEntity.ok().build();
     }
 
 }
