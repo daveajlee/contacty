@@ -2,12 +2,44 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>de.davelee.misc</groupId>
+	<groupId>de.davelee</groupId>
 	<artifactId>contact-microservice</artifactId>
-	<version>1.1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
-	
-	<name>Contact Microservice</name>
+
+	<name>Contacty - Contact Microservice</name>
+	<version>1.1.0-SNAPSHOT</version>
+	<description>This microservice enables emails to be sent using Java Mail through a REST API per JSON and supports SSL.</description>
+	<url>https://www.davelee.de</url>
+	<developers>
+		<developer>
+			<id>1</id>
+			<name>David A J Lee</name>
+			<url>https://www.davelee.de</url>
+		</developer>
+	</developers>
+	<licenses>
+		<license>
+			<name>GNU General Public Licence</name>
+			<url>https://www.gnu.org/licenses/gpl-3.0.en.html</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<!-- Git Connection -->
+	<scm>
+		<connection>scm:git:https://github.com/daveajlee/contact-microservice</connection>
+		<url>https://github.com/daveajlee/contact-microservice</url>
+		<tag>HEAD</tag>
+	</scm>
+
+	<!-- GitHub Packages -->
+	<distributionManagement>
+		<repository>
+			<id>github</id>
+			<name>GitHub daveajlee Apache Maven Packages</name>
+			<url>https://maven.pkg.github.com/daveajlee/contact-microservice</url>
+		</repository>
+	</distributionManagement>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
