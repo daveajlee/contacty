@@ -24,6 +24,8 @@ public class ContactUIController {
 
     /**
      * Endpoint for showing the form (HTML template: contact.html).
+     * @param contactRequest a <code>ContactRequest</code> object which ensures
+     *                       that the form is displayed for the user to enter.
      * @return a <code>String</code> with the name of the html template to display.
      */
     @GetMapping("/")
