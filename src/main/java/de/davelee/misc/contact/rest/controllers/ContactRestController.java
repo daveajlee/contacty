@@ -79,7 +79,7 @@ public class ContactRestController {
             ACCESS_LOG.put(LocalDate.now(), 1);
             sendEmailService.sendEmail(contactRequest);
         } else {
-            //Check if number was less than maximum allowed - as we only set the
+            //Check if number was less than maximum allowed - as we only send the email in that case.
             if ( number < maxAllowedEmails ) {
                 ACCESS_LOG.put(LocalDate.now(), number+1);
                 sendEmailService.sendEmail(contactRequest);

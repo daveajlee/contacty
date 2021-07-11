@@ -1,5 +1,8 @@
 package de.davelee.misc.contact.data;
 
+import org.hibernate.validator.constraints.URL;
+
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -21,10 +24,12 @@ public class ContactRequest {
      */
     @NotNull
     @Size(min=1)
+    @Email
     private String emailAddress;
     /**
      * The website of the sender.
      */
+    @URL
     private String website;
     /**
      * The message which the sender wrote for the recipient (must not be null or empty).

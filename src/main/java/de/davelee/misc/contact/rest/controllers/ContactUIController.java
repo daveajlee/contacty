@@ -27,7 +27,7 @@ public class ContactUIController {
      * @return a <code>String</code> with the name of the html template to display.
      */
     @GetMapping("/")
-    public String showForm() {
+    public String showForm(ContactRequest contactRequest) {
         return "contact";
     }
 

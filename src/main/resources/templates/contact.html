@@ -27,12 +27,13 @@
             <div class="form-group" id="frmGrpEmail">
                 <label for="email" class="control-label">E-Mail (required)</label>
                 <input type="text" th:field="*{emailAddress}" id="email" class="form-control" placeholder="Your E-Mail"/>
-                <p th:if="${#fields.hasErrors('emailAddress')}">Please complete the Email Address field. Thank you!</p>
+                <p th:if="${#fields.hasErrors('emailAddress')}">Please complete the Email Address field by entering a valid email address. Thank you!</p>
             </div>
             <!-- Website -->
             <div class="form-group" id="frmGrpWebsite">
                 <label for="website" class="control-label">Website</label>
                 <input type="text" th:field="*{website}" id="website" class="form-control" placeholder="Your Website"/>
+                <p th:if="${#fields.hasErrors('website')}">Please complete the Website field by entering a valid web address starting with http or https. Thank you!</p>
             </div>
             <!-- Message -->
             <div class="form-group" id="frmGrpMessage">
