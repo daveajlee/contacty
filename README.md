@@ -8,7 +8,7 @@ Microservices per definition implement a single business feature. This microserv
 
 1.  To use the microservice you need to specify the user specific configuration parameters in application.properties and application-production.properties.
 2.  Create an executable jar using mvn clean install.
-3.  Run the jar (for example in production mode): java -Dspring.profiles.active=production -jar contact-microservice.jar
+3.  Run the jar (for example in production mode) with at least Java 11: java -Dspring.profiles.active=production -jar contact-microservice.jar
 
 **How to integrate the contact microservice with your website**
 *    Option 1: The contact microservice comes with a small simple HTML form which can be directly integrated into your website. This form is available by calling the contact microservice with the URL https://your-domain/contact-microservice/
