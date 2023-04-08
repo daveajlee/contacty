@@ -1,4 +1,4 @@
-# contact-microservice
+![Contacty](https://github.com/daveajlee/contacty/blob/master/src/main/resources/static/contacty-logo.png)
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/c6966f0291de4fada794ac4d7b32dedf)](https://app.codacy.com/manual/dave_33/contact-microservice?utm_source=github.com&utm_medium=referral&utm_content=daveajlee/contact-microservice&utm_campaign=Badge_Grade_Dashboard)
 
