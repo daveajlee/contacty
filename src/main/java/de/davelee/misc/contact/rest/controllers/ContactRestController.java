@@ -2,7 +2,10 @@ package de.davelee.misc.contact.rest.controllers;
 
 import de.davelee.misc.contact.data.ContactRequest;
 import de.davelee.misc.contact.service.SendEmailService;
-import io.swagger.annotations.*;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +26,7 @@ import java.util.HashMap;
  * @author Dave Lee
  */
 @RestController
-@Api(value="/contact")
-@SwaggerDefinition(
-        tags = {
-                @Tag(name = "Contacty - Contact Microservice", description = "Contact operations")
-        }
-)
+@Tag(name="/contact")
 @RequestMapping(value="/contact")
 public class ContactRestController {
 
@@ -68,9 +66,9 @@ public class ContactRestController {
      *                       from the sender.
      * @return a <code>ResponseEntity</code> object with the status code and no content.
      */
-    @ApiOperation(value = "Send information by email", notes="Method to send data per email.")
+    @Operation(summary = "Send information by email", description="Method to send data per email.")
     @PostMapping(value="/sendEmail")
-    @ApiResponses(value = {@ApiResponse(code=200,message="Successfully sent email")})
+    @ApiResponses(value = {@ApiResponse(responseCode="200",description="Successfully sent email")})
     public ResponseEntity<Void> sendEmail ( @RequestBody final ContactRequest contactRequest ) {
         //Check how many emails already sent today.
         Integer number = ACCESS_LOG.get(LocalDate.now());
