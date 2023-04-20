@@ -18,7 +18,7 @@ import org.springframework.context.annotation.Profile;
 public class SwaggerConfiguration {
 
     @Bean
-    public OpenAPI personalManOpenAPI() {
+    public OpenAPI contactyOpenAPI() {
         return new OpenAPI()
                 .info(new Info().title("Contacty API")
                         .description("Microservices per definition implement a single business feature. This microservice enables emails to be sent using Java Mail through a REST API per JSON. Therefore emails can be sent from any programming language through this REST API and microservice.")

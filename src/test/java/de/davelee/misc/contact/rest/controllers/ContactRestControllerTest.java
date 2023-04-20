@@ -3,18 +3,15 @@ package de.davelee.misc.contact.rest.controllers;
 import com.dumbster.smtp.SimpleSmtpServer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.davelee.misc.contact.data.ContactRequest;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
@@ -29,9 +26,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * It uses an built-in SMTP Server von wiser.
  * @author Dave Lee
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(webEnvironment= SpringBootTest.WebEnvironment.MOCK)
-@ActiveProfiles("test")
+@SpringBootTest
 public class ContactRestControllerTest {
 
     private SimpleSmtpServer dumbster;
@@ -45,7 +40,7 @@ public class ContactRestControllerTest {
     /**
      * Set up the built-in SMTP Server on port 1025 and configure the mock application context.
      */
-    @Before
+    @BeforeEach
     public void setUp() throws IOException {
         dumbster = SimpleSmtpServer.start(1025);
         mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
@@ -55,7 +50,7 @@ public class ContactRestControllerTest {
      * Before ending the test, stop the built-in SMTP Server.
      * @throws Exception a <code>Exception</code> object which occurs if the SMTP server cannot be stopped.
      */
-    @After
+    @AfterEach
     public void tearDown() throws Exception {
         dumbster.stop();
     }

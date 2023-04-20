@@ -1,17 +1,16 @@
 package de.davelee.misc.contact.rest.controllers;
 
 import de.davelee.misc.contact.configuration.SwaggerConfiguration;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
  * This class tests the SwaggerConfiguration without running Spring Boot.
  * @author Dave Lee
  */
-@RunWith(SpringJUnit4ClassRunner.class)
+@SpringBootTest
 public class SwaggerConfigurationTest {
 
     /**
@@ -22,7 +21,7 @@ public class SwaggerConfigurationTest {
     @Test
     public void testSwagger() {
         SwaggerConfiguration swaggerConfiguration = new SwaggerConfiguration();
-        assertNotNull(swaggerConfiguration.api());
+        assertNotNull(swaggerConfiguration.publicApi());
     }
 
 }
