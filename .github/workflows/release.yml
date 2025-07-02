@@ -17,17 +17,22 @@ jobs:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-maven-
+      - name: Setup Maven Action
+        uses: s4u/setup-maven-action@v1.18.0
+        with:
+            java-version: 17
       - name: Setup Java JDK
         uses: actions/setup-java@v4.7.1
         with:
           java-version: 17
           distribution: zulu
           server-id: github
+          cache: 'maven'
       - name: Configure Git user
         run: |
           git config user.email "actions@github.com"
           git config user.name "GitHub Actions"
       - name: Publish JAR
-        run: ls && ./mvnw -B release:prepare release:perform
+        run: mvn -B release:prepare release:perform
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
