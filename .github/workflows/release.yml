@@ -27,6 +27,8 @@ jobs:
           java-version: 17
           distribution: zulu
           server-id: github
+          server-username: GITHUB_USER_REF
+          server-password: GITHUB_TOKEN_REF
           cache: 'maven'
       - name: Configure Git user
         run: |
