@@ -1,5 +1,5 @@
 <p align="center">
-<img src="https://www.davelee.de/common/assets/img/portfolio/contacty-logo.png" alt="Contacty" width="300" height="300">
+<img src="https://www.davelee.de/common/assets/img/portfolio/contacty.webp" alt="Contacty" width="300" height="300">
 </p>
 
 <p align=center><a href="https://app.codacy.com/manual/dave_33/contact-microservice?utm_source=github.com&utm_medium=referral&utm_content=daveajlee/contact-microservice&utm_campaign=Badge_Grade_Dashboard"><img src="https://api.codacy.com/project/badge/Grade/c6966f0291de4fada794ac4d7b32dedf" alt="Codacy Badge"> </a>
