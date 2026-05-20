@@ -1,0 +1,23 @@
+/* Define the maximum height of the logo image */
+.img-max-height {
+  max-height:50px;
+}
+
+.color-nav {
+  background-color: rgb(217, 214, 68);
+}
+
+.color-footer {
+  background-color: white;
+  margin-top: 10px;
+}
+
+@media only screen and (max-width: 900px) {
+  .nav-card {
+    margin-bottom: 10px;
+  }
+
+  .download-card {
+    margin-bottom: 10px;
+  }
+}

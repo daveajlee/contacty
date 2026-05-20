@@ -16,3 +16,5 @@ target/
 
 #Mac files
 .DS_Store
+
+docs/.idea/
