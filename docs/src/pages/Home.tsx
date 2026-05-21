@@ -22,7 +22,7 @@ function Home() {
         </Row>
         <Row>
             <Col className="text-left mt-3"><p>If you simply want to try out Contacty without reading the complete documentation first
-                (not recommended) then you can simply download the latest version: </p><p className="text-center mt-2"><Button type="button" variant="primary" href="/#/download">Download</Button></p></Col>
+                (not recommended) then you can simply download the latest version: </p><p className="text-center mt-2"><Button type="button" variant="primary" href="#/download">Download</Button></p></Col>
         </Row>
         <hr/>
         <Row className="mt-3">
@@ -34,7 +34,7 @@ function Home() {
                         <Card.Text>
                             Find out more about the vision and goals behind Contacty.
                         </Card.Text>
-                        <Button type="button" variant="primary" href="/#/vision">Vision</Button>
+                        <Button type="button" variant="primary" href="#/vision">Vision</Button>
                     </Card.Body>
                 </Card>
             </Col>
@@ -46,8 +46,8 @@ function Home() {
                         <Card.Text>
                             Current features and the next features that are planned.
                         </Card.Text>
-                        <Button type="button" variant="primary" href="/#/features">Features</Button>
-                        <Button type="button" variant="primary" className="ms-3" href="/#/roadmap">Roadmap</Button>
+                        <Button type="button" variant="primary" href="#/features">Features</Button>
+                        <Button type="button" variant="primary" className="ms-3" href="#/roadmap">Roadmap</Button>
                     </Card.Body>
                 </Card>
             </Col>
@@ -59,7 +59,7 @@ function Home() {
                         <Card.Text>
                             Documentation of the architecture design of Contacty.
                         </Card.Text>
-                        <Button type="button" variant="primary" href="/#/architecture">Architecture</Button>
+                        <Button type="button" variant="primary" href="#/architecture">Architecture</Button>
                     </Card.Body>
                 </Card>
             </Col>
@@ -71,7 +71,7 @@ function Home() {
                         <Card.Text>
                             Technical documentation for developers.
                         </Card.Text>
-                        <Button type="button" variant="primary" href="/#/api">API</Button>
+                        <Button type="button" variant="primary" href="#/api">API</Button>
                     </Card.Body>
                 </Card>
             </Col>
