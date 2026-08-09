@@ -18,7 +18,7 @@
     "react-bootstrap": "^2.10.10",
     "react-dom": "^19.2.6",
     "react-responsive": "^10.0.1",
-    "react-router-dom": "^7.15.1"
+    "react-router-dom": "^7.18.2"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
